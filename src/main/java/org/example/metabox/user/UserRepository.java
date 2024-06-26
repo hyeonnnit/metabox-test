@@ -1,5 +1,6 @@
 package org.example.metabox.user;
 
+import org.example.metabox.movie_scrap.MovieScrap;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -29,7 +30,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("delete from User u where u.nickname = :nickname")
     void deleteByNickname(String nickname);
-
 
 
 }

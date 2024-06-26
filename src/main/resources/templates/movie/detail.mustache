@@ -21,6 +21,13 @@
         background-color: rgba(255, 255, 255, 0.8);
         padding: 5px 10px;
         border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-icon.active{
+        background-color: #4b1b3a;
+        color: white;
+
     }
 
     .badge {
@@ -281,6 +288,7 @@
         border-radius: 50%;
         margin-right: 10px;
     }
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -290,7 +298,7 @@
         <div class="movie-poster-container">
             <img src="/image/movie/{{model.imgFilename}}" alt="Movie Poster" class="movie-poster">
             <form action="/scrap/{{model.id}}/movie" method="post">
-                <button class="btn btn-outline-secondary btn-icon">
+                <button class="btn btn-outline-secondary btn-icon" onclick="toggleAct(this)">
                     <img src="/image/movie/icon-192.png" style="width: 25px; height: 25px;">찜
                 </button>
             </form>
@@ -496,5 +504,23 @@
             }
         }
     });
+</script>
+<script>
+    $('form').submit(function (event) {
+        if(confirm("찜하시겠습니까?")){
+            document.getElementById('myButton');
+            alert("기대되는 영화에 추가되었습니다.");
+
+        } else {
+            event.preventDefault();
+            alert("취소되었습니다.");
+        }
+    });
+
+</script>
+<script>
+    function toggleAct(button) {
+        button.classList.toggle("active");
+    }
 </script>
 {{> layout/footer}}

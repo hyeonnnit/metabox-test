@@ -4,28 +4,34 @@
         pointer-events: none;
         opacity: 0.5;
     }
+
     .profile-pic {
         width: 100px;
         height: 100px;
         background-color: #e9ecef;
         border-radius: 50%;
     }
+
     .movie-card {
         display: flex;
         align-items: center;
         margin-bottom: 20px;
     }
+
     .movie-poster {
         width: 100px;
         height: 150px;
         margin-right: 20px;
     }
+
     .movie-info {
         flex-grow: 1;
     }
+
     .movie-info h5 {
         margin: 0 0 10px 0;
     }
+
     .movie-info p {
         margin: 0 0 10px 0;
     }
@@ -34,13 +40,14 @@
 <div class="container">
     <!-- 유저 정보 -->
     <div class="row mt-4">
+
         <div class="col-md-3">
             <div class="text-center">
                 <div class="profile-pic mb-3 mx-auto"></div>
                 <h5>박선규님</h5>
             </div>
             <div class="list-group mt-3">
-                <a href="/scrap/movie/list" class="list-group-item list-group-item-action text-center">0 <br>기대되는 영화</a>
+                <a href="/scrap/movie-list" class="list-group-item list-group-item-action text-center">0 <br>기대되는 영화</a>
                 <a href="#" class="list-group-item list-group-item-action active text-center">11<br> 내가 본 영화</a>
                 <a href="#" class="list-group-item list-group-item-action disabled text-center">0<br> 내가 쓴 한줄평</a>
             </div>
@@ -59,37 +66,24 @@
                     <button class="btn btn-outline-danger form-control" onclick="searchMovies()">검색</button>
                 </div>
             </div>
-            <div class="movie-card">
-                <img src="https://via.placeholder.com/100x150" class="movie-poster" alt="Exhuma">
-                <div class="movie-info">
-                    <h5>파묘 (Exhuma)</h5>
-                    <p>2024.03.23 (토) 19:45 ~ 22:09</p>
-                    <p>CGV서면삼정타워 5관 13층 (리클라이너) / 2명</p>
-                    <p>이 영화를 평가해주세요</p>
+            {{#movieScrapList}}
+                <div class="movie-card">
+                    <img src="/image/movie/{{imgFilename}}" class="movie-poster" alt="Exhuma">
+                    <div class="movie-info">
+                        <h5>{{title}}</h5>
+                        <p>2024.03.23 (토) 19:45 ~ 22:09</p>
+                        <p>CGV서면삼정타워 5관 13층 (리클라이너) / 2명</p>
+                        <p>이 영화를 평가해주세요</p>
+                    </div>
+                    <form action="/scrap/{{id}}" method="post">
+                        <button class="btn btn-danger">X</button>
+                    </form>
+
                 </div>
-                <button class="btn btn-danger">X</button>
-            </div>
-            <div class="movie-card">
-                <img src="https://via.placeholder.com/100x150" class="movie-poster" alt="Brave Citizen">
-                <div class="movie-info">
-                    <h5>용감한 시민 (Brave Citizen)</h5>
-                    <p>2023.11.10 (금) 12:50 ~ 14:52</p>
-                    <p>CGV여의도 2관 4층 (모션베드, Laser) / 2명</p>
-                    <p>이 영화를 평가해주세요</p>
-                </div>
-                <button class="btn btn-danger">X</button>
-            </div>
-            <div class="movie-card">
-                <img src="https://via.placeholder.com/100x150" class="movie-poster" alt="The Boy and the Heron">
-                <div class="movie-info">
-                    <h5>그대들은 어떻게 살 것인가 (자막) (The Boy and the Heron)</h5>
-                    <p>2023.11.09 (목) 14:40 ~ 16:54</p>
-                    <p>CGV서면삼정타워 5관 13층 (리클라이너) / 2명</p>
-                    <p>이 영화를 평가해주세요</p>
-                </div>
-                <button class="btn btn-danger">X</button>
-            </div>
+            {{/movieScrapList}}
         </div>
+
+
     </div>
 </div>
 
